@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>حِفظ سورة العنكبوت | بصوت الشيخ ياسر الدوسري</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-950:#06231b;
+    --green-900:#0b3a2c;
+    --green-800:#0f4a38;
+    --green-700:#14603f;
+    --green-600:#1a7a4f;
+    --green-500:#219a63;
+    --gold-600:#a67c1e;
+    --gold-500:#c9982f;
+    --gold-400:#e0b856;
+    --gold-300:#f0d68a;
+    --cream:#f8f3e6;
+    --cream-dark:#efe6cf;
+    --ink:#1c2b25;
+    --danger:#b3452f;
+    --ok:#1a7a4f;
+    --radius:16px;
+    --shadow: 0 10px 30px -12px rgba(6,35,27,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Cairo', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 100% -10%, rgba(230,190,90,0.15), transparent 60%),
+      radial-gradient(1000px 500px at -10% 10%, rgba(26,122,79,0.18), transparent 60%),
+      var(--cream);
+    padding-bottom:120px;
+  }
+
+  /* ===== زخرفة إسلامية في الخلفية ===== */
+  .pattern-strip{
+    height:10px;
+    width:100%;
+    background:
+      repeating-linear-gradient(135deg, var(--gold-500) 0 10px, var(--gold-400) 10px 20px);
+  }
+
+  header.hero{
+    background: linear-gradient(160deg, var(--green-950), var(--green-800) 55%, var(--green-700));
+    color:var(--cream);
+    padding:38px 20px 46px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  header.hero::before, header.hero::after{
+    content:"";
+    position:absolute;
+    width:340px;height:340px;
+    border:2px solid rgba(224,184,86,0.18);
+    border-radius:50%;
+    top:-160px;
+  }
+  header.hero::before{ right:-120px; }
+  header.hero::after{ left:-140px; top:auto; bottom:-200px; border-color: rgba(224,184,86,0.12);}
+
+  .hero-badge{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:.5px;
+    background:rgba(224,184,86,0.15);
+    border:1px solid rgba(224,184,86,0.5);
+    color:var(--gold-300);
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  header.hero h1{
+    font-family:'Amiri', serif;
+    font-size:clamp(28px, 5vw, 46px);
+    margin:0 0 8px;
+    color:var(--cream);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  header.hero p.subtitle{
+    margin:0;
+    color:var(--gold-300);
+    font-size:16px;
+    font-weight:500;
+  }
+  header.hero p.reciter{
+    margin-top:6px;
+    color:rgba(248,243,230,0.75);
+    font-size:14px;
+  }
+
+  /* ===== شريط التقدم أعلى الصفحة ===== */
+  .progress-panel{
+    max-width:920px;
+    margin:-30px auto 0;
+    background:var(--cream);
+    border:1px solid var(--cream-dark);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:18px 22px;
+    position:relative;
+    z-index:5;
+  }
+  .progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .progress-top .label{
+    font-weight:700;
+    color:var(--green-900);
+    font-size:15px;
+  }
+  .progress-top .pct{
+    font-weight:800;
+    color:var(--gold-600);
+    font-size:20px;
+  }
+  .bar-track{
+    width:100%;
+    height:14px;
+    border-radius:999px;
+    background:var(--cream-dark);
+    overflow:hidden;
+    border:1px solid rgba(166,124,30,0.25);
+  }
+  .bar-fill{
+    height:100%;
+    width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--green-600), var(--gold-500));
+    transition:width .4s ease;
+  }
+  .progress-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    outline:none;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:9px 16px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:active{ transform:scale(0.96); }
+  .btn-primary{ background:var(--green-600); color:#fff; }
+  .btn-primary:hover{ background:var(--green-700); }
+  .btn-gold{ background:var(--gold-500); color:var(--green-950); }
+  .btn-gold:hover{ background:var(--gold-600); color:#fff; }
+  .btn-outline{ background:transparent; color:var(--green-800); border:1.5px solid var(--green-700); }
+  .btn-outline:hover{ background:rgba(26,122,79,0.08); }
+  .btn-danger{ background:transparent; color:var(--danger); border:1.5px solid var(--danger); }
+  .btn-danger:hover{ background:rgba(179,69,47,0.08); }
+  .btn-sm{ padding:6px 12px; font-size:13px; border-radius:8px; }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  /* ===== المشغل الرئيسي ===== */
+  .player-wrap{
+    max-width:920px;
+    margin:16px auto 0;
+    padding:0 20px;
+  }
+  .player{
+    background: linear-gradient(135deg, var(--green-900), var(--green-800));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:16px 20px;
+    color:var(--cream);
+    position:sticky;
+    top:10px;
+    z-index:50;
+    border:1px solid rgba(224,184,86,0.35);
+  }
+  .player-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .player-ayah-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+  }
+  .player-badge{
+    flex:none;
+    width:38px;height:38px;
+    border-radius:50%;
+    background:var(--gold-500);
+    color:var(--green-950);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;
+    font-size:14px;
+  }
+  .player-text{
+    font-family:'Amiri', serif;
+    font-size:18px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:var(--gold-300);
+  }
+  .player-status{
+    font-size:12px;
+    color:rgba(248,243,230,0.65);
+    flex:none;
+  }
+  .player-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ctrl-btn{
+    background:rgba(248,243,230,0.12);
+    color:var(--cream);
+    width:40px;height:40px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;
+    transition:background .15s;
+  }
+  .ctrl-btn:hover{ background:rgba(248,243,230,0.25); }
+  .ctrl-btn.main{
+    width:52px;height:52px;
+    background:var(--gold-500);
+    color:var(--green-950);
+    font-size:20px;
+  }
+  .ctrl-btn.main:hover{ background:var(--gold-400); }
+  .ctrl-btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+  .seek-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    direction:ltr;
+  }
+  .time{ font-size:12px; color:rgba(248,243,230,0.7); min-width:38px; text-align:center; }
+  input[type=range].seek{
+    flex:1;
+    -webkit-appearance:none;
+    height:6px;
+    border-radius:999px;
+    background:rgba(248,243,230,0.25);
+    outline:none;
+  }
+  input[type=range].seek::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--gold-400);
+    border:2px solid var(--green-950);
+    cursor:pointer;
+  }
+  input[type=range].seek::-moz-range-thumb{
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--gold-400);
+    border:2px solid var(--green-950);
+    cursor:pointer;
+  }
+  .player-hint{
+    margin-top:8px;
+    font-size:12px;
+    color:var(--gold-300);
+    text-align:center;
+    min-height:16px;
+  }
+
+  /* ===== شبكة الآيات ===== */
+  main{
+    max-width:920px;
+    margin:26px auto 0;
+    padding:0 20px;
+  }
+  .section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--green-900);
+    margin:0 0 16px;
+    font-weight:800;
+    font-size:18px;
+  }
+  .section-title .dot{ width:10px;height:10px;border-radius:50%;background:var(--gold-500); }
+
+  #ayat-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .ayah-card{
+    background:#fffdf8;
+    border:1px solid var(--cream-dark);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:0 4px 16px -8px rgba(6,35,27,0.15);
+    transition:border-color .2s, box-shadow .2s;
+    position:relative;
+  }
+  .ayah-card.playing{
+    border-color:var(--gold-500);
+    box-shadow:0 0 0 3px rgba(201,152,47,0.25), 0 4px 16px -6px rgba(6,35,27,0.2);
+  }
+  .ayah-card.memorized{
+    background:linear-gradient(180deg, #fffdf8, #f2f8f2);
+    border-color:var(--green-500);
+  }
+  .ayah-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+  }
+  .ayah-number{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;height:34px;
+    border-radius:10px;
+    background:var(--green-800);
+    color:var(--gold-300);
+    font-weight:700;
+    font-size:13px;
+  }
+  .ayah-badges{
+    display:flex;
+    gap:8px;
+  }
+  .badge-check{
+    display:none;
+    align-items:center;
+    gap:4px;
+    background:rgba(26,122,79,0.12);
+    color:var(--green-700);
+    font-size:12px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+  }
+  .ayah-card.memorized .badge-check{ display:inline-flex; }
+
+  .ayah-text{
+    font-family:'Amiri', serif;
+    font-size:26px;
+    line-height:2.1;
+    color:var(--ink);
+    text-align:justify;
+    margin-bottom:16px;
+    transition:filter .25s ease, opacity .25s ease;
+  }
+  .ayah-text.blurred{
+    filter: blur(9px);
+    opacity:.75;
+    user-select:none;
+  }
+  .peek-hint{
+    display:none;
+    text-align:center;
+    font-size:12px;
+    color:var(--gold-600);
+    margin:-8px 0 12px;
+  }
+  .ayah-card.hidden-mode .peek-hint{ display:block; }
+
+  .ayah-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    text-align:center;
+    color:var(--green-800);
+    font-size:13px;
+    margin-top:40px;
+    opacity:.75;
+  }
+
+  /* ===== حالات التحميل / الخطأ ===== */
+  .state-box{
+    max-width:920px;
+    margin:60px auto;
+    text-align:center;
+    padding:40px 20px;
+    color:var(--green-900);
+  }
+  .spinner{
+    width:46px;height:46px;
+    border-radius:50%;
+    border:4px solid var(--cream-dark);
+    border-top-color:var(--gold-500);
+    margin:0 auto 18px;
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .state-box h3{ margin:0 0 8px; font-size:18px; }
+  .state-box p{ margin:0 0 16px; color:rgba(11,58,44,0.7); font-size:14px; }
+
+  .toast{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--green-950);
+    color:var(--cream);
+    padding:12px 22px;
+    border-radius:999px;
+    font-size:14px;
+    box-shadow:var(--shadow);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s, transform .25s;
+    z-index:200;
+    border:1px solid rgba(224,184,86,0.4);
+  }
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  @media (min-width:720px){
+    .ayah-text{ font-size:29px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="pattern-strip"></div>
+
+<header class="hero">
+  <span class="hero-badge">مساعد الحفظ التفاعلي</span>
+  <h1>سورة العنكبوت</h1>
+  <p class="subtitle">69 آية — رحلة حفظ آيةً آية</p>
+  <p class="reciter">بصوت الشيخ / ياسر الدوسري 🎙️</p>
+</header>
+
+<section class="progress-panel">
+  <div class="progress-top">
+    <span class="label">📊 تقدّم الحفظ</span>
+    <span class="pct" id="pct-label">0%</span>
+  </div>
+  <div class="bar-track"><div class="bar-fill" id="progress-bar"></div></div>
+  <div style="margin-top:8px;font-size:13px;color:var(--green-800);" id="progress-detail">0 من 69 آية محفوظة</div>
+  <div class="progress-actions">
+    <button class="btn btn-outline btn-sm" id="toggle-hide-all">🙈 إخفاء كل الآيات</button>
+    <button class="btn btn-danger btn-sm" id="reset-btn">🔄 إعادة ضبط التقدم</button>
+  </div>
+</section>
+
+<div class="player-wrap">
+  <div class="player" id="player" hidden>
+    <div class="player-top">
+      <div class="player-ayah-info">
+        <div class="player-badge" id="player-badge">--</div>
+        <div class="player-text" id="player-text">اختر آية للاستماع إليها</div>
+      </div>
+      <div class="player-status" id="player-status"></div>
+    </div>
+    <div class="player-controls">
+      <button class="ctrl-btn" id="prev-btn" title="الآية السابقة">⏮️</button>
+      <button class="ctrl-btn main" id="play-pause-btn" title="تشغيل / إيقاف">▶️</button>
+      <button class="ctrl-btn" id="next-btn" title="الآية التالية">⏭️</button>
+      <div class="seek-row" style="flex:1;">
+        <span class="time" id="cur-time">0:00</span>
+        <input type="range" class="seek" id="seek" min="0" max="100" value="0">
+        <span class="time" id="dur-time">0:00</span>
+      </div>
+    </div>
+    <div class="player-hint" id="player-hint"></div>
+  </div>
+</div>
+
+<main>
+  <h2 class="section-title"><span class="dot"></span> آيات السورة</h2>
+
+  <div class="state-box" id="loading-box">
+    <div class="spinner"></div>
+    <h3>جاري تحميل آيات سورة العنكبوت...</h3>
+    <p>نقوم بجلب النص القرآني من الخادم، قد يستغرق ذلك بضع ثوانٍ.</p>
+  </div>
+
+  <div class="state-box" id="error-box" style="display:none;">
+    <h3>⚠️ تعذّر تحميل الآيات</h3>
+    <p id="error-msg">حدث خطأ أثناء الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.</p>
+    <button class="btn btn-primary" id="retry-btn">إعادة المحاولة</button>
+  </div>
+
+  <div id="ayat-grid"></div>
+</main>
+
+<footer>
+  صُنع بمحبة لخدمة كتاب الله 📖 — تقبّل الله منّا ومنكم
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  const SURAH_NUMBER = 29;
+  const SURAH_TOTAL_AYAT = 69;
+  const RECITER_FOLDER = "Yasser_Ad-Dussary_128kbps"; // مجلد الشيخ ياسر الدوسري على everyayah.com
+  const STORAGE_KEY = "hifz_ankabut_memorized_v1";
+
+  // مصادر بديلة لنص السورة (يتم تجربتها بالترتيب لضمان عمل التطبيق 100%)
+  const TEXT_ENDPOINTS = [
+    `https://api.alquran.cloud/v1/surah/${SURAH_NUMBER}/quran-uthmani`,
+    `https://api.alquran.cloud/v1/surah/${SURAH_NUMBER}/ar.alafasy`
+  ];
+
+  const el = {
+    grid: document.getElementById('ayat-grid'),
+    loadingBox: document.getElementById('loading-box'),
+    errorBox: document.getElementById('error-box'),
+    errorMsg: document.getElementById('error-msg'),
+    retryBtn: document.getElementById('retry-btn'),
+    progressBar: document.getElementById('progress-bar'),
+    pctLabel: document.getElementById('pct-label'),
+    progressDetail: document.getElementById('progress-detail'),
+    toggleHideAll: document.getElementById('toggle-hide-all'),
+    resetBtn: document.getElementById('reset-btn'),
+    player: document.getElementById('player'),
+    playerBadge: document.getElementById('player-badge'),
+    playerText: document.getElementById('player-text'),
+    playerStatus: document.getElementById('player-status'),
+    playPauseBtn: document.getElementById('play-pause-btn'),
+    prevBtn: document.getElementById('prev-btn'),
+    nextBtn: document.getElementById('next-btn'),
+    seek: document.getElementById('seek'),
+    curTime: document.getElementById('cur-time'),
+    durTime: document.getElementById('dur-time'),
+    playerHint: document.getElementById('player-hint'),
+    toast: document.getElementById('toast')
+  };
+
+  let ayat = [];              // { number, text }
+  let memorized = new Set();  // أرقام الآيات المحفوظة
+  let hiddenIndividually = new Set();
+  let hideAllMode = false;
+
+  let currentAyahNumber = null;
+  let isSeeking = false;
+
+  // ===== الصوت =====
+  const audio = new Audio();
+  audio.preload = "auto";
+
+  function showToast(msg){
+    el.toast.textContent = msg;
+    el.toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=> el.toast.classList.remove('show'), 2200);
+  }
+
+  function pad3(n){ return String(n).padStart(3,'0'); }
+
+  function audioUrlFor(ayahNumberInSurah){
+    return `https://everyayah.com/data/${RECITER_FOLDER}/${pad3(SURAH_NUMBER)}${pad3(ayahNumberInSurah)}.mp3`;
+  }
+
+  function formatTime(sec){
+    if(!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec/60);
+    const s = Math.floor(sec%60);
+    return `${m}:${String(s).padStart(2,'0')}`;
+  }
+
+  // ===== LocalStorage =====
+  function loadMemorized(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        const arr = JSON.parse(raw);
+        if(Array.isArray(arr)) memorized = new Set(arr);
+      }
+    }catch(e){ /* تجاهل أي خطأ في القراءة */ }
+  }
+  function saveMemorized(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(memorized)));
+    }catch(e){ showToast('تعذّر حفظ التقدم في هذا المتصفح'); }
+  }
+
+  function updateProgressUI(){
+    const done = memorized.size;
+    const pct = Math.round((done / SURAH_TOTAL_AYAT) * 100);
+    el.progressBar.style.width = pct + '%';
+    el.pctLabel.textContent = pct + '%';
+    el.progressDetail.textContent = `${done} من ${SURAH_TOTAL_AYAT} آية محفوظة`;
+  }
+
+  // ===== جلب النص =====
+  async function fetchSurahText(){
+    let lastErr = null;
+    for(const url of TEXT_ENDPOINTS){
+      try{
+        const res = await fetch(url, { cache: "no-store" });
+        if(!res.ok) throw new Error('استجابة غير ناجحة من الخادم: ' + res.status);
+        const json = await res.json();
+        if(json.code !== 200 || !json.data || !Array.isArray(json.data.ayahs)){
+          throw new Error('صيغة بيانات غير متوقعة');
+        }
+        return json.data.ayahs.map(a => ({
+          number: a.numberInSurah,
+          text: a.text
+        }));
+      }catch(e){
+        lastErr = e;
+        continue; // جرّب المصدر التالي
+      }
+    }
+    throw lastErr || new Error('تعذّر الوصول لأي مصدر بيانات');
+  }
+
+  function renderError(message){
+    el.loadingBox.style.display = 'none';
+    el.errorBox.style.display = 'block';
+    el.errorMsg.textContent = message || 'حدث خطأ غير متوقع.';
+  }
+
+  function buildCard(ayah){
+    const card = document.createElement('div');
+    card.className = 'ayah-card';
+    card.dataset.ayah = ayah.number;
+
+    card.innerHTML = `
+      <div class="ayah-card-top">
+        <div class="ayah-number">${ayah.number}</div>
+        <div class="ayah-badges">
+          <span class="badge-check">✅ محفوظة</span>
+        </div>
+      </div>
+      <p class="peek-hint">الآية مخفية — اضغط عليها لإظهارها مؤقتًا</p>
+      <p class="ayah-text" data-role="text">${ayah.text}</p>
+      <div class="ayah-actions">
+        <button class="btn btn-primary btn-sm" data-action="play">▶️ استماع للآية</button>
+        <button class="btn btn-outline btn-sm" data-action="hide">🙈 إخفاء الآية</button>
+        <button class="btn btn-gold btn-sm" data-action="memorize">✅ تم الحفظ</button>
+      </div>
+    `;
+
+    const textEl = card.querySelector('[data-role="text"]');
+
+    // إخفاء/إظهار عند الضغط المباشر على نص الآية (لمسة سريعة أثناء التسميع)
+    textEl.addEventListener('click', () => {
+      if(card.classList.contains('hidden-mode')){
+        textEl.classList.toggle('blurred');
+      }
+    });
+
+    card.querySelector('[data-action="play"]').addEventListener('click', () => {
+      playAyah(ayah.number);
+    });
+
+    card.querySelector('[data-action="hide"]').addEventListener('click', (e) => {
+      toggleIndividualHide(ayah.number, e.currentTarget);
+    });
+
+    card.querySelector('[data-action="memorize"]').addEventListener('click', (e) => {
+      toggleMemorized(ayah.number, e.currentTarget);
+    });
+
+    if(memorized.has(ayah.number)){
+      card.classList.add('memorized');
+    }
+
+    return card;
+  }
+
+  function renderAyat(){
+    el.grid.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    ayat.forEach(a => frag.appendChild(buildCard(a)));
+    el.grid.appendChild(frag);
+    el.loadingBox.style.display = 'none';
+    el.errorBox.style.display = 'none';
+  }
+
+  // ===== الإخفاء الفردي =====
+  function toggleIndividualHide(ayahNumber, btn){
+    const card = el.grid.querySelector(`.ayah-card[data-ayah="${ayahNumber}"]`);
+    const textEl = card.querySelector('[data-role="text"]');
+
+    if(hiddenIndividually.has(ayahNumber)){
+      hiddenIndividually.delete(ayahNumber);
+      card.classList.remove('hidden-mode');
+      textEl.classList.remove('blurred');
+      btn.textContent = '🙈 إخفاء الآية';
+    }else{
+      hiddenIndividually.add(ayahNumber);
+      card.classList.add('hidden-mode');
+      textEl.classList.add('blurred');
+      btn.textContent = '👁️ إظهار الآية';
+    }
+  }
+
+  function applyHideAll(state){
+    hideAllMode = state;
+    document.querySelectorAll('.ayah-card').forEach(card => {
+      const ayahNumber = Number(card.dataset.ayah);
+      const textEl = card.querySelector('[data-role="text"]');
+      const hideBtn = card.querySelector('[data-action="hide"]');
+
+      if(state){
+        card.classList.add('hidden-mode');
+        textEl.classList.add('blurred');
+        hideBtn.textContent = '👁️ إظهار الآية';
+        hiddenIndividually.add(ayahNumber);
+      }else{
+        card.classList.remove('hidden-mode');
+        textEl.classList.remove('blurred');
+        hideBtn.textContent = '🙈 إخفاء الآية';
+        hiddenIndividually.delete(ayahNumber);
+      }
+    });
+    el.toggleHideAll.textContent = state ? '👁️ إظهار كل الآيات' : '🙈 إخفاء كل الآيات';
+  }
+
+  // ===== الحفظ (تم الحفظ) =====
+  function toggleMemorized(ayahNumber, btn){
+    const card = el.grid.querySelector(`.ayah-card[data-ayah="${ayahNumber}"]`);
+    if(memorized.has(ayahNumber)){
+      memorized.delete(ayahNumber);
+      card.classList.remove('memorized');
+    }else{
+      memorized.add(ayahNumber);
+      card.classList.add('memorized');
+      showToast(`أحسنت! تم تسجيل حفظ الآية ${ayahNumber} 🌿`);
+    }
+    saveMemorized();
+    updateProgressUI();
+  }
+
+  // ================= المُشغّل الرئيسي =================
+
+  function setPlayingCardHighlight(ayahNumber){
+    document.querySelectorAll('.ayah-card.playing').forEach(c => c.classList.remove('playing'));
+    if(ayahNumber){
+      const card = el.grid.querySelector(`.ayah-card[data-ayah="${ayahNumber}"]`);
+      if(card) card.classList.add('playing');
+    }
+  }
+
+  function getAyahText(ayahNumber){
+    const found = ayat.find(a => a.number === ayahNumber);
+    return found ? found.text : '';
+  }
+
+  function playAyah(ayahNumber){
+    if(ayahNumber < 1 || ayahNumber > SURAH_TOTAL_AYAT) return;
+
+    currentAyahNumber = ayahNumber;
+    el.player.hidden = false;
+
+    // تحديث واجهة المشغل فورًا (حتى قبل اكتمال تحميل الصوت)
+    el.playerBadge.textContent = ayahNumber;
+    el.playerText.textContent = getAyahText(ayahNumber);
+    el.playerStatus.textContent = 'جاري التحميل...';
+    el.playPauseBtn.textContent = '⏳';
+    el.playPauseBtn.disabled = true;
+    el.playerHint.textContent = '';
+    el.seek.value = 0;
+    el.curTime.textContent = '0:00';
+    el.durTime.textContent = '0:00';
+
+    setPlayingCardHighlight(ayahNumber);
+
+    // إصلاح مشكلة تعليق الصوت وظهور 0:00: نوقف أي تشغيل سابق، نضبط المصدر، ثم نعيد التحميل بشكل صريح
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = audioUrlFor(ayahNumber);
+    audio.load();
+
+    const tryPlay = () => {
+      audio.play().then(() => {
+        el.playPauseBtn.disabled = false;
+        el.playPauseBtn.textContent = '⏸️';
+        el.playerStatus.textContent = 'قيد التشغيل';
+      }).catch(err => {
+        // بعض المتصفحات تمنع التشغيل التلقائي دون تفاعل المستخدم
+        el.playPauseBtn.disabled = false;
+        el.playPauseBtn.textContent = '▶️';
+        el.playerStatus.textContent = 'جاهز';
+        el.playerHint.textContent = 'اضغط زر التشغيل للاستماع (تم منع التشغيل التلقائي من المتصفح)';
+      });
+    };
+
+    // ننتظر تحميل بيانات كافية قبل محاولة التشغيل لتفادي التعليق
+    audio.oncanplay = () => { tryPlay(); audio.oncanplay = null; };
+  }
+
+  function togglePlayPause(){
+    if(!currentAyahNumber){
+      if(ayat.length) playAyah(ayat[0].number);
+      return;
+    }
+    if(audio.paused){
+      audio.play().then(() => {
+        el.playPauseBtn.textContent = '⏸️';
+        el.playerStatus.textContent = 'قيد التشغيل';
+      }).catch(() => {
+        el.playerHint.textContent = 'تعذّر تشغيل الصوت، حاول مرة أخرى.';
+      });
+    }else{
+      audio.pause();
+      el.playPauseBtn.textContent = '▶️';
+      el.playerStatus.textContent = 'متوقف مؤقتًا';
+    }
+  }
+
+  function playNext(){
+    if(currentAyahNumber && currentAyahNumber < SURAH_TOTAL_AYAT){
+      playAyah(currentAyahNumber + 1);
+    }
+  }
+  function playPrev(){
+    if(currentAyahNumber && currentAyahNumber > 1){
+      playAyah(currentAyahNumber - 1);
+    }
+  }
+
+  audio.addEventListener('loadedmetadata', () => {
+    el.durTime.textContent = formatTime(audio.duration);
+    el.seek.max = Math.floor(audio.duration) || 100;
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if(isSeeking) return;
+    el.curTime.textContent = formatTime(audio.currentTime);
+    if(audio.duration){
+      el.seek.value = Math.floor(audio.currentTime);
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    el.playPauseBtn.textContent = '▶️';
+    el.playerStatus.textContent = 'انتهت الآية';
+  });
+
+  audio.addEventListener('error', () => {
+    el.playerStatus.textContent = 'تعذّر تحميل الصوت';
+    el.playerHint.textContent = 'حدث خطأ أثناء تحميل ملف الصوت. تحقق من اتصال الإنترنت وحاول مجددًا.';
+    el.playPauseBtn.disabled = false;
+    el.playPauseBtn.textContent = '▶️';
+  });
+
+  el.seek.addEventListener('input', () => { isSeeking = true; el.curTime.textContent = formatTime(el.seek.value); });
+  el.seek.addEventListener('change', () => {
+    audio.currentTime = Number(el.seek.value);
+    isSeeking = false;
+  });
+
+  el.playPauseBtn.addEventListener('click', togglePlayPause);
+  el.nextBtn.addEventListener('click', playNext);
+  el.prevBtn.addEventListener('click', playPrev);
+
+  // ===== أزرار عامة =====
+  el.toggleHideAll.addEventListener('click', () => applyHideAll(!hideAllMode));
+
+  el.resetBtn.addEventListener('click', () => {
+    if(!confirm('هل أنت متأكد من إعادة ضبط تقدم الحفظ بالكامل؟ لا يمكن التراجع عن هذا الإجراء.')) return;
+    memorized.clear();
+    saveMemorized();
+    updateProgressUI();
+    document.querySelectorAll('.ayah-card.memorized').forEach(c => c.classList.remove('memorized'));
+    showToast('تم إعادة ضبط التقدم بنجاح 🔄');
+  });
+
+  el.retryBtn.addEventListener('click', init);
+
+  // ===== التهيئة =====
+  async function init(){
+    el.errorBox.style.display = 'none';
+    el.loadingBox.style.display = 'block';
+    el.grid.innerHTML = '';
+
+    try{
+      ayat = await fetchSurahText();
+      if(ayat.length === 0) throw new Error('لم يتم استلام أي آيات من الخادم');
+      loadMemorized();
+      renderAyat();
+      updateProgressUI();
+    }catch(err){
+      renderError('تعذّر تحميل آيات سورة العنكبوت. يرجى التحقق من اتصال الإنترنت ثم الضغط على "إعادة المحاولة".');
+      console.error(err);
+    }
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
